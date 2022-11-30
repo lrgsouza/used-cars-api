@@ -1,4 +1,4 @@
-from flask import Flask, request, jsonify, render_template
+from flask import Flask, request, jsonify,  render_template, request, url_for, redirect
 from oop.car import Car
 import jsonpickle as jp
 
@@ -17,7 +17,6 @@ def home():
 def api_car_model(model):
     return jp.encode(Car().readModel(model))
 
-
 @app.route('/cars/plate/<plate>', methods=['GET'])
 def api_car_plate(plate):
     return jp.encode(Car().readPlate(plate))
@@ -32,6 +31,29 @@ def page_not_found(e):
 def page_not_found(e):
     return render_template("error.html", error="Error 500: Internal Server Error"), 500
 
+
+@app.route('/home', methods=('GET', 'POST'))
+def index():
+    if request.method == 'POST':
+        car = Car()
+        car.brand = request.form['brand']
+        car.model = request.form['model']
+        car.year = request.form['year']
+        car.fuel = request.form['fuel']
+        car.km = request.form['km']
+        car.engine = request.form['engine']
+        car.plate = request.form['plate']
+        car.sold = False
+        car.create()
+        return redirect(url_for('index'))
+
+    cars = Car().readPlate('VCZ8Z16')
+    return render_template('index.html', cars=cars)
+
+@app.route('/platerender/<plate>', methods=('GET'))
+def byplate(plate):
+    cars = Car().readPlate(plate)
+    return render_template('plateTemplate.html', cars=cars)
 
 # A method that runs the application server.
 if __name__ == "__main__":
