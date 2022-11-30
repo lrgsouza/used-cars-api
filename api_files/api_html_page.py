@@ -9,7 +9,7 @@ app = Blueprint('html_page', __name__)
 # Flask maps HTTP requests to Python functions.
 @app.route('/', methods=['GET', 'POST'])
 def home():
-    return render_template('home.html')
+    return render_template('homePageTemplate.html')
 
 
 @app.route('/filter', methods=['GET', 'POST'])
