@@ -1,12 +1,22 @@
-from flask import Flask, request, jsonify,  render_template, request, url_for, redirect
+
+from flask import Flask, render_template
+
+from api_files.api_html_page import app as html_page
+from api_files.api_json_page import app as json_page
+from api_files.api_config_page import app as config_page
 from oop.car import Car
-import jsonpickle as jp
-import json
+
 # Init app
+
 app = Flask(__name__)
+
+app.register_blueprint(json_page)
+app.register_blueprint(html_page)
+app.register_blueprint(config_page)
 
 
 # Flask maps HTTP requests to Python functions.
+
 # The process of mapping URLs to functions is called routing.
 @app.route('/cars/model/<model>', methods=['GET'])
 def api_car_model(model):
