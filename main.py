@@ -9,15 +9,7 @@ from helper.write_a_json import write_a_json as wj
 #         db.execute_query(f'{n_line}')
 #     print("Bd started!")
 
-class Car():
-    def __init__(self,marca,modelo,ano,combustivel,km,motor,placa):
-        self.marca = marca
-        self.modelo = modelo
-        self.ano = ano
-        self.combustivel = combustivel
-        self.km = km
-        self.motor = motor
-        self.placa = placa
+
 
 class UsedCarCrud():
 

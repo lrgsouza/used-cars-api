@@ -1,17 +1,20 @@
-from neo4j import GraphDatabase
+import pymongo
 
+class Database:
+    def __init__(self, collection, dataset=None):
+        database = 'usedcarsdb'
+        connectionString = "mongodb+srv://usedcars:zfvyKT4HG0ng7e58@cluster.7yhbdp2.mongodb.net/?retryWrites=true&w=majority"
+        self.clusterConnection = pymongo.MongoClient(
+            connectionString,
+            # CASO OCORRA O ERRO [SSL_INVALID_CERTIFICATE]
+            tlsAllowInvalidCertificates=True
+        )
+        self.db = self.clusterConnection[database]
+        self.collection = self.db[collection]
 
-class Graph:
-    def __init__(self, uri, user, password):
-        self.driver = GraphDatabase.driver(uri, auth=(user, password))
+        if dataset:
+            self.dataset = dataset
 
-    def close(self):
-        self.driver.close()
-
-    def execute_query(self, query, parameters=None):
-        data = []
-        with self.driver.session() as session:
-            results = session.run(query, parameters)
-            for record in results:
-                data.append(record)
-            return data
+    def resetDatabase(self):
+        self.db.drop_collection(self.collection)
+        self.collection.insert_many(self.dataset)

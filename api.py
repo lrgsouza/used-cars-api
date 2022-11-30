@@ -15,11 +15,13 @@ def dict_factory(cursor, row):
 # The process of mapping URLs to functions is called routing.
 @app.route('/', methods=['GET'])
 def home():
-    return "<h1>Used Cars Graph</h1><p>Vehicle Data Query</p>"
+    return "<h1>Used Cars Database System</h1><p>Vehicle Data Query</p>"
+
 
 @app.errorhandler(404)
 def page_not_found(e):
     return "<h1>404</h1><p>The resource could not be found</p>", 404
+
 
 # A method that runs the application server.
 if __name__ == "__main__":
