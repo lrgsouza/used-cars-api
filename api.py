@@ -1,82 +1,25 @@
-from flask import Flask, request, jsonify,  render_template, request, url_for, redirect
+
+from flask import Flask, render_template
+
+from api_files.api_html_page import app as html_page
+from api_files.api_json_page import app as json_page
+from api_files.api_config_page import app as config_page
 from oop.car import Car
-import jsonpickle as jp
-import json
+
 # Init app
+
 app = Flask(__name__)
+
+app.register_blueprint(json_page)
+app.register_blueprint(html_page)
+app.register_blueprint(config_page)
 
 
 # Flask maps HTTP requests to Python functions.
-# The process of mapping URLs to functions is called routing.
 @app.route('/', methods=['GET'])
 def home():
     return "<h1>Used Cars Database System</h1><p>Vehicle Data Query</p>"
 
-
-@app.route('/cars/model/<model>', methods=['GET'])
-def api_car_model(model):
-    return jp.encode(Car().readModel(model))
-
-@app.route('/cars/plate/<plate>', methods=['GET'])
-def api_car_plate(plate):
-    return jp.encode(Car().readPlate(plate))
-
-
-@app.errorhandler(404)
-def page_not_found(e):
-    return render_template("error.html", error="Error 404: Not Found"), 404
-
-
-@app.errorhandler(500)
-def page_not_found(e):
-    return render_template("error.html", error="Error 500: Internal Server Error"), 500
-
-
-@app.route('/home', methods=['GET', 'POST'])
-def index():
-    if request.method == 'POST':
-        car = Car()
-        car.brand = request.form['brand']
-        car.model = request.form['model']
-        car.year = request.form['year']
-        car.fuel = request.form['fuel']
-        car.km = request.form['km']
-        car.engine = request.form['engine']
-        car.plate = request.form['plate']
-        car.sold = False
-        car.create()
-        return redirect(url_for('index'))
-
-    cars = Car().readPlate('VCZ8Z16')
-    return render_template('index.html', cars=cars)
-
-@app.route('/model/<model>', methods=['GET'])
-def byplate(model):
-    cars = Car().readModel(model)
-    carros = []
-    for car in cars:
-        carros.append(car)
-    return render_template('tableTemplate.html', cars=carros, model=model, len=len(carros))
-
-@app.route('/filter', methods=['GET', 'POST'])
-def filter():
-    if request.method == 'POST':
-        model = request.form['model']
-        cars = Car().readModel(model)
-        carros = []
-        for car in cars:
-            carros.append(car)
-        return render_template('filter.html', cars=carros)
-    return render_template('filter.html')
-
-
-@app.route('/delete', methods=['GET', 'POST'])
-def delete():
-    if request.method == 'POST':
-        plate = request.form['plate']
-        Car().delete(plate)
-        return redirect(url_for('delete'))
-    return render_template('delete.html')
 
 # A method that runs the application server.
 if __name__ == "__main__":
