@@ -1,17 +1,9 @@
-from flask import Flask, request, jsonify
+from flask import Flask, request, jsonify, render_template
 from oop.car import Car
-import json
-import jsonpickle
-
+import jsonpickle as jp
 
 # Init app
 app = Flask(__name__)
-
-def dict_factory(cursor, row):
-    d = {}
-    for idx, col in enumerate(cursor.description):
-        d[col[0]] = row[idx]
-    return d
 
 
 # Flask maps HTTP requests to Python functions.
@@ -23,17 +15,22 @@ def home():
 
 @app.route('/cars/model/<model>', methods=['GET'])
 def api_car_model(model):
-    return jsonpickle.encode(Car().readModel(model))
+    return jp.encode(Car().readModel(model))
 
 
 @app.route('/cars/plate/<plate>', methods=['GET'])
 def api_car_plate(plate):
-    return jsonpickle.encode(Car().readPlate(plate))
+    return jp.encode(Car().readPlate(plate))
 
 
 @app.errorhandler(404)
 def page_not_found(e):
-    return "<h1>404</h1><p>The resource could not be found</p>", 404
+    return render_template("error.html", error="Error 404: Not Found"), 404
+
+
+@app.errorhandler(500)
+def page_not_found(e):
+    return render_template("error.html", error="Error 500: Internal Server Error"), 500
 
 
 # A method that runs the application server.
