@@ -30,7 +30,7 @@ def index():
 
 
 @app.route('/model/<model>', methods=['GET'])
-def byplate(model):
+def byModel(model):
     cars = Car().readModel(model)
     carros = []
     for car in cars:
@@ -66,11 +66,11 @@ def delete():
         return render_template('delete.html', num=res)
     return render_template('delete.html', num=-1)
 
-@app.route('/find', methods=['GET', 'POST'])
-def find():
-    if request.method == 'POST':
-        plate = request.form['plate']
-        res = Car().delete(plate)
-        return render_template('delete.html', num=res)
 
-    return render_template('delete.html', num=-1)
+@app.route('/find/<model>', methods=['GET'])
+def find(model):
+    cars = Car().readModel(model)
+    carros = []
+    for car in cars:
+        carros.append(car)
+    return render_template('showCarsTemplate.html', cars=carros, model=model, len=len(carros))

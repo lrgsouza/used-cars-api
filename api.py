@@ -13,9 +13,10 @@ app.register_blueprint(json_page)
 app.register_blueprint(html_page)
 app.register_blueprint(config_page)
 
+
 @app.route('/test', methods=['GET', 'POST'])
 def index():
-    return render_template('tables.html')
+    return render_template('showCarsTemplate.html')
 
 
 # Flask maps HTTP requests to Python functions.
