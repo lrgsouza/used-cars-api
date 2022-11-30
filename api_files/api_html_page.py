@@ -17,9 +17,15 @@ def index():
     if request.method == 'POST':
         car = Car()
         car.plate = request.form['plate']
+        car.brand = request.form['plate']
+        car.model = request.form['model']
+        car.year = request.form['year']
+        car.fuel = request.form['fuel']
+        car.km = request.form['km']
+        car.engine = request.form['engine']
         car.sold = False
         car.create()
-        return redirect(url_for('/'))
+        return redirect(url_for('html_page.home'))
     return render_template('register.html')
 
 
@@ -58,4 +64,13 @@ def delete():
         plate = request.form['plate']
         res = Car().delete(plate)
         return render_template('delete.html', num=res)
+    return render_template('delete.html', num=-1)
+
+@app.route('/find', methods=['GET', 'POST'])
+def find():
+    if request.method == 'POST':
+        plate = request.form['plate']
+        res = Car().delete(plate)
+        return render_template('delete.html', num=res)
+
     return render_template('delete.html', num=-1)
