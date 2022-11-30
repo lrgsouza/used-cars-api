@@ -6,12 +6,8 @@ from oop.car import Car
 app = Blueprint('html_page', __name__)
 
 
-@app.route('/', methods=['GET', 'POST'])
-def home():
-    return render_template('home.html')
-
 # Flask maps HTTP requests to Python functions.
-@app.route('/home', methods=['GET', 'POST'])
+@app.route('/', methods=['GET', 'POST'])
 def home():
     return render_template('home.html')
 
