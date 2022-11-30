@@ -1,8 +1,13 @@
 from flask import Flask, request, jsonify
+from oop.car import Car
+from bson import json_util, ObjectId
+import json
 
 # Init app
 app = Flask(__name__)
 
+def parse_json(data):
+    return json.loads(json_util.dumps(data))
 
 def dict_factory(cursor, row):
     d = {}
@@ -16,6 +21,16 @@ def dict_factory(cursor, row):
 @app.route('/', methods=['GET'])
 def home():
     return "<h1>Used Cars Database System</h1><p>Vehicle Data Query</p>"
+
+
+@app.route('/cars/model/<model>', methods=['GET'])
+def api_car_model(model):
+    return parse_json(Car().readModel(model))
+
+
+@app.route('/cars/plate/<plate>', methods=['GET'])
+def api_car_plate(plate):
+    return parse_json(Car().readPlate(plate))
 
 
 @app.errorhandler(404)
