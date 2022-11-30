@@ -17,7 +17,7 @@ def index():
     if request.method == 'POST':
         car = Car()
         car.plate = request.form['plate']
-        car.brand = request.form['plate']
+        car.brand = request.form['brand']
         car.model = request.form['model']
         car.year = request.form['year']
         car.fuel = request.form['fuel']
@@ -76,7 +76,23 @@ def find(model):
     return render_template('showCarsTemplate.html', cars=carros, model=model, len=len(carros))
 
 
-@app.route('/findOne/<plate>', methods=['GET'])
+@app.route('/findOne/<plate>', methods=['GET', 'POST'])
 def findOne(plate):
     car = Car().readPlate(plate)
     return render_template('updateCarTemplate.html', car=car)
+
+
+@app.route('/update', methods=['POST'])
+def update():
+    car = Car()
+    car.plate = request.form['plate']
+    car.brand = request.form['brand']
+    car.model = request.form['model']
+    car.year = request.form['year']
+    car.fuel = request.form['fuel']
+    car.km = request.form['km']
+    car.engine = request.form['engine']
+    car.sold = request.form['sold']
+    car.update()
+    redir = 'html_page.find/' + str(car.plate)
+    return redirect(url_for(redir))
