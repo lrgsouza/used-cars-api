@@ -12,15 +12,15 @@
     </style>
 </head>
 <body>
-    <h1>Used Car API</h1>
-    <hr>
+    <h1>Used Car by Model: {{ model }}</h1>
     <div class="content">
-            <hr>
-    {% for car in cars %}
-        <div class="car">
-            <p>{{ car['model'] }} <i>({{ car['brand']}})</i><i>({{ car['year']}})</i></p>
-        </div>
-    {% endfor %}
+        {% for car in cars %}
+                <p>
+                    Marca: {{ car['brand'] }} <br>
+                    Modelo: {{ car['model'] }} <br>
+                    Ano: {{ car['year'] }} <br>
+                </p>
+        {% endfor %}
 
     </div>
 </body>

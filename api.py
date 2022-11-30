@@ -1,7 +1,7 @@
 from flask import Flask, request, jsonify,  render_template, request, url_for, redirect
 from oop.car import Car
 import jsonpickle as jp
-
+import json
 # Init app
 app = Flask(__name__)
 
@@ -50,10 +50,13 @@ def index():
     cars = Car().readPlate('VCZ8Z16')
     return render_template('index.html', cars=cars)
 
-@app.route('/platerender/<plate>', methods=('GET'))
-def byplate(plate):
-    cars = Car().readPlate(plate)
-    return render_template('plateTemplate.html', cars=cars)
+@app.route('/model/<model>', methods=['GET'])
+def byplate(model):
+    cars = Car().readModel(model)
+    carros = []
+    for car in cars:
+        carros.append(car)
+    return render_template('modelTemplate.html', cars=carros, model=model,)
 
 # A method that runs the application server.
 if __name__ == "__main__":
