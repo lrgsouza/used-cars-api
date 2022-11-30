@@ -28,7 +28,11 @@ class Car(Database):
         return res
 
     def readModel(self, model):
-        res = self.collection.find({"model": "A3"})
+        res = self.collection.find({"model": model})
+        return res
+
+    def readByDict(self, args: dict):
+        res = self.collection.find(args)
         return res
 
     def read(self):
