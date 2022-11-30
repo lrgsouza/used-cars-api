@@ -92,6 +92,9 @@ $(window).on("load resize ", function() {
 <body>
   <section>
   <!--for demo wrap-->
+    {%if len == 0%}
+  <h1>There is no results for {{model}}</h1>
+    {%else%}
   <h1>Showing all results for {{model}}</h1>
   <div class="tbl-header">
     <table cellpadding="0" cellspacing="0" border="0">
@@ -117,6 +120,7 @@ $(window).on("load resize ", function() {
       </tbody>
     </table>
   </div>
+    {%endif%}
 </section>
 
   <script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>

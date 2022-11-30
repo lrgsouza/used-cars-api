@@ -56,7 +56,7 @@ def byplate(model):
     carros = []
     for car in cars:
         carros.append(car)
-    return render_template('tableTemplate.html', cars=carros, model=model)
+    return render_template('tableTemplate.html', cars=carros, model=model, len=len(carros))
 
 # A method that runs the application server.
 if __name__ == "__main__":
