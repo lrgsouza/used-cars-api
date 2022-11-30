@@ -28,22 +28,6 @@ def index():
 
     cars = Car().readPlate('VCZ8Z16')
     return render_template('index.html', cars=cars)@app.route('/register', methods=['GET', 'POST'])
-def index():
-    if request.method == 'POST':
-        car = Car()
-        car.brand = request.form['brand']
-        car.model = request.form['model']
-        car.year = request.form['year']
-        car.fuel = request.form['fuel']
-        car.km = request.form['km']
-        car.engine = request.form['engine']
-        car.plate = request.form['plate']
-        car.sold = False
-        car.create()
-        return redirect(url_for('/'))
-    return render_template('register.html')
-
-
 
 @app.route('/model/<model>', methods=['GET'])
 def byplate(model):
@@ -52,6 +36,17 @@ def byplate(model):
     for car in cars:
         carros.append(car)
     return render_template('tableTemplate.html', cars=carros, model=model, len=len(carros))
+
+
+@app.route('/register', methods=['GET', 'POST'])
+def index():
+    if request.method == 'POST':
+        car = Car()
+        car.plate = request.form['plate']
+        car.sold = False
+        car.create()
+        return redirect(url_for('/'))
+    return render_template('register.html')
 
 
 @app.route('/filter', methods=['GET', 'POST'])
