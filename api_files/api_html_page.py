@@ -94,5 +94,5 @@ def update():
     car.engine = request.form['engine']
     car.sold = request.form['sold']
     car.update()
-    redir = 'html_page.find/' + str(car.plate)
-    return redirect(url_for(redir))
+    redir = '/findOne/' + str(car.plate)
+    return redirect(redir)

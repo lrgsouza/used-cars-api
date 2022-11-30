@@ -40,7 +40,7 @@ class Car(Database):
         return self.collection.find(args)
 
     def update(self):
-        res = self.collection.update_one({"_id": ObjectId(id)}, {
+        res = self.collection.update_one({"plate": self.plate}, {
             "$set": {"brand": self.brand, "model": self.model, "year": self.year,
                      "fuel": self.fuel, "km": self.km, "engine": self.engine,
                      "plate": self.plate, "sold": self.sold}})
