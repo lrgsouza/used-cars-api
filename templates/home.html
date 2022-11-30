@@ -1,11 +1,9 @@
 <!DOCTYPE html>
-<html >
+<html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Fixed table header</title>
-
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css">
-
+    <meta charset="UTF-8">
+    <title>Home Page</title>
+</head>
 
   <style>
 body{
@@ -61,7 +59,7 @@ body{
   font-family: 'Roboto', sans-serif;
 }
 section{
-  margin: 10px;
+  margin: 50px;
 }
 
 
@@ -87,75 +85,15 @@ $(window).on("load resize ", function() {
   </script>
 
 
-</head>
+
 
 <body>
-  <section>
-    <div class="buttons">
+ <h1>Used Cars Database System</h1><p>Vehicle Data Query</p>
+<BR>
 <button onclick="location.href='http://127.0.0.1:5000/'" type="button">HOME</button>
 <button onclick="location.href='http://127.0.0.1:5000/filter'" type="button">Filter</button>
 <button onclick="location.href='http://127.0.0.1:5000/register'" type="button">Registration</button>
 <button onclick="location.href='http://127.0.0.1:5000/delete'" type="button">delete</button>
-    </div>
-      <h1>Used Car Table</h1>
-      <hr>
-    <div class="content">
-    <form method="post">
-        <p>
-            <b><label for="content">Input the filter criteria</label></b>
-        </p>
-        <p>
-            <input type="text" name="model"
-                placeholder="Car model"></input>
-        </p>
-        <p>
-            <input type="text" name="brand"
-                placeholder="Car brand"></input>
-        </p>
-        <button type="submit">Submit</button>
-    </form>
-    </div>
-  <!--for demo wrap-->
-    {%if len == 0%}
-  <h1>There is no results</h1>
-    {%else%}
-  <h1>Showing all results</h1>
-  <div class="tbl-header">
-    <table cellpadding="0" cellspacing="0" border="0">
-      <thead>
-        <tr>
-          <th>Brand</th>
-          <th>Model</th>
-          <th>Year</th>
-          <th>Fuel</th>
-          <th>KM</th>
-          <th>Engine Power</th>
-          <th>Plate</th>
-        </tr>
-      </thead>
-    </table>
-  </div>
-  <div class="tbl-content">
-    <table cellpadding="0" cellspacing="0" border="0">
-      <tbody>
-      {%for car in cars%}
-        <tr>
-          <td>{{car['brand']}}</td>
-          <td>{{car['model']}}</td>
-          <td>{{car['year']}}</td>
-          <td>{{car['fuel']}}</td>
-          <td>{{car['km']}}</td>
-          <td>{{car['engine']}}</td>
-          <td>{{car['plate']}}</td>
-        </tr>
-      {%endfor%}
-      </tbody>
-    </table>
-  </div>
-    {%endif%}
-</section>
-
-  <script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
 
 </body>
 </html>
