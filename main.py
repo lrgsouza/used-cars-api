@@ -7,12 +7,4 @@ from oop.car import Car
 
 if __name__ == '__main__':
 
-    c = Car()
-    x = c.readModel("A3")
-
-    for car in x:
-        pprint.pprint(car)
-
-    print(x)
-
     print("Job finished")

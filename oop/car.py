@@ -1,5 +1,6 @@
 from db.database import Database
 from bson import ObjectId
+import json
 
 
 class Car(Database):
@@ -31,9 +32,12 @@ class Car(Database):
         res = self.collection.find({"model": "A3"})
         return res
 
-    def read(self,plate):
+    def read(self, plate):
         res = self.collection.find_one({"plate": plate})
         return res
+
+    def readByDict(self, args: dict):
+        return self.collection.find_one(args)
 
     def update(self):
         res = self.collection.update_one({"_id": ObjectId(id)}, {
