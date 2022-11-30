@@ -12,32 +12,6 @@ def home():
     return render_template('home.html')
 
 
-@app.route('/register', methods=['GET', 'POST'])
-def index():
-    if request.method == 'POST':
-        car = Car()
-        car.plate = request.form['plate']
-        car.brand = request.form['brand']
-        car.model = request.form['model']
-        car.year = request.form['year']
-        car.fuel = request.form['fuel']
-        car.km = request.form['km']
-        car.engine = request.form['engine']
-        car.sold = False
-        car.create()
-        return redirect(url_for('html_page.home'))
-    return render_template('register.html')
-
-
-@app.route('/model/<model>', methods=['GET'])
-def byModel(model):
-    cars = Car().readModel(model)
-    carros = []
-    for car in cars:
-        carros.append(car)
-    return render_template('tableTemplate.html', cars=carros, model=model, len=len(carros))
-
-
 @app.route('/filter', methods=['GET', 'POST'])
 def filter():
     if request.method == 'POST':
@@ -63,8 +37,8 @@ def delete():
     if request.method == 'POST':
         plate = request.form['plate']
         res = Car().delete(plate)
-        return render_template('delete.html', num=res)
-    return render_template('delete.html', num=-1)
+
+    return redirect('/register')
 
 
 @app.route('/find/<model>', methods=['GET'])
@@ -79,7 +53,9 @@ def find(model):
 @app.route('/findOne/<plate>', methods=['GET', 'POST'])
 def findOne(plate):
     car = Car().readPlate(plate)
-    return render_template('updateCarTemplate.html', car=car)
+    if car:
+        return render_template('updateCarTemplate.html', car=car)
+    return redirect('/register')
 
 
 @app.route('/update', methods=['POST'])
@@ -96,3 +72,22 @@ def update():
     car.update()
     redir = '/findOne/' + str(car.plate)
     return redirect(redir)
+
+
+@app.route('/register', methods=['GET', 'POST'])
+def register():
+    if request.method == 'POST':
+        car = Car()
+        car.plate = request.form['plate']
+        car.brand = request.form['brand']
+        car.model = request.form['model']
+        car.year = request.form['year']
+        car.fuel = request.form['fuel']
+        car.km = request.form['km']
+        car.engine = request.form['engine']
+        car.sold = request.form['sold']
+        car.create()
+
+        redir = '/findOne/' + str(car.plate)
+        return redirect(redir)
+    return render_template('registerCarTemplate.html')
