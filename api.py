@@ -32,7 +32,7 @@ def page_not_found(e):
     return render_template("error.html", error="Error 500: Internal Server Error"), 500
 
 
-@app.route('/home', methods=('GET', 'POST'))
+@app.route('/home', methods=['GET', 'POST'])
 def index():
     if request.method == 'POST':
         car = Car()
@@ -57,6 +57,26 @@ def byplate(model):
     for car in cars:
         carros.append(car)
     return render_template('tableTemplate.html', cars=carros, model=model, len=len(carros))
+
+@app.route('/filter', methods=['GET', 'POST'])
+def filter():
+    if request.method == 'POST':
+        model = request.form['model']
+        cars = Car().readModel(model)
+        carros = []
+        for car in cars:
+            carros.append(car)
+        return render_template('filter.html', cars=carros)
+    return render_template('filter.html')
+
+
+@app.route('/delete', methods=['GET', 'POST'])
+def delete():
+    if request.method == 'POST':
+        plate = request.form['plate']
+        Car().delete(plate)
+        return redirect(url_for('delete'))
+    return render_template('delete.html')
 
 # A method that runs the application server.
 if __name__ == "__main__":

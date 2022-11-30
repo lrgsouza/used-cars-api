@@ -46,6 +46,6 @@ class Car(Database):
                      "plate": self.plate, "sold": self.sold}})
         return res.modified_count
 
-    def delete(self):
-        res = self.collection.delete_one({"_id": ObjectId(id)})
+    def delete(self,plate):
+        res = self.collection.delete_one({"plate": plate})
         return res.deleted_count

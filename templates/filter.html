@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Used Car Plate filter</title>
+    <title>Used Car API UI</title>
     <style>
         .todo {
             padding: 20px;
@@ -12,15 +12,30 @@
     </style>
 </head>
 <body>
-    <h1>Used Car by Model: {{ model }}</h1>
+    <h1>Used Car Filter</h1>
+    <hr>
     <div class="content">
+    <form method="post">
+        <p>
+            <b><label for="content">Input the model</label></b>
+        </p>
+        <p>
+            <input type="text" name="model"
+                placeholder="Car model"></input>
+        </p>
+        <button type="submit">Submit</button>
+    </form>
+    </div>
+        <div class="content">
         {% for car in cars %}
                 <p>
                     Marca: {{ car['brand'] }} <br>
                     Modelo: {{ car['model'] }} <br>
                     Ano: {{ car['year'] }} <br>
+                    Placa: {{ car['plate'] }} <br>
                 </p>
         {% endfor %}
     </div>
+
 </body>
 </html>
