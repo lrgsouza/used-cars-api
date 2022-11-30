@@ -37,7 +37,7 @@ class Car(Database):
         return res
 
     def readByDict(self, args: dict):
-        return self.collection.find_one(args)
+        return self.collection.find(args)
 
     def update(self):
         res = self.collection.update_one({"_id": ObjectId(id)}, {
