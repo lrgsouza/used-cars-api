@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Used Car Plate filter</title>
+    <style>
+        .todo {
+            padding: 20px;
+            margin: 10px;
+            background-color: #eee;
+        }
+    </style>
+</head>
+<body>
+    <h1>Used Car API</h1>
+    <hr>
+    <div class="content">
+            <hr>
+    {% for car in cars %}
+        <div class="car">
+            <p>{{ car['model'] }} <i>({{ car['brand']}})</i><i>({{ car['year']}})</i></p>
+        </div>
+    {% endfor %}
+
+    </div>
+</body>
+</html>

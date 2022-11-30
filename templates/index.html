@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Used Car API UI</title>
+    <style>
+        .todo {
+            padding: 20px;
+            margin: 10px;
+            background-color: #eee;
+        }
+    </style>
+</head>
+<body>
+    <h1>Used Car API</h1>
+    <hr>
+    <div class="content">
+    <form method="post">
+        <p>
+            <b><label for="content">Car Model</label></b>
+        </p>
+        <p>
+            <input type="text" name="brand"
+                placeholder="Car Brand"></input>
+        </p>
+        <p>
+            <input type="text" name="model"
+                placeholder="Car Model"></input>
+        </p>
+       <p>
+            <input type="text" name="year"
+                placeholder="Car Year"></input>
+        </p>
+       <p>
+            <input type="text" name="fuel"
+                placeholder="Car Fuel(Flex,Diesel,Hybrid)"></input>
+        </p>
+       <p>
+            <input type="text" name="km"
+                placeholder="Car KM"></input>
+        </p>
+       <p>
+            <input type="text" name="engine"
+                placeholder="Car Engine power"></input>
+        </p>
+       <p>
+            <input type="text" name="plate"
+                placeholder="Car Plate"></input>
+        </p>
+        <button type="submit">Submit</button>
+    </form>
+            <hr>
+    {% for car in cars %}
+        <div class="car">
+            <p>{{ car['model'] }} <i>({{ car['brand']}})</i></p>
+        </div>
+    {% endfor %}
+
+    </div>
+</body>
+</html>
