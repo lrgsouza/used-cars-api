@@ -128,20 +128,20 @@
                   <div class="row">
                     <div class="col-md-4 pr-md-1">
                       <div class="form-group">
-                        <label>Model</label>
-                        <input type="text" class="form-control" placeholder="Model" value="Zafira">
+                        <label>Brand</label>
+                        <input type="text" class="form-control" placeholder="Brand" value="{{car['brand']}}">
                       </div>
                     </div>
                     <div class="col-md-4 px-md-1">
                       <div class="form-group">
-                        <label>Brand</label>
-                        <input type="text" class="form-control" placeholder="Brand" value="Chevrolet">
+                        <label>Model</label>
+                        <input type="text" class="form-control" placeholder="Model" value="{{car['model']}}">
                       </div>
                     </div>
                     <div class="col-md-4 pl-md-1">
                       <div class="form-group">
                         <label>Plate</label>
-                        <input type="text" class="form-control" placeholder="XXX0X00" value="AAA7J99">
+                        <input type="text" class="form-control" placeholder="XXX0X00" value="{{car['plate']}}">
                       </div>
                     </div>
                   </div>
@@ -149,16 +149,30 @@
                     <div class="col-md-6 pr-md-1">
                       <div class="form-group">
                         <label>Kilometers driven</label>
-                        <input type="number" class="form-control" placeholder="Kilometers" value=100000>
+                        <input type="number" class="form-control" placeholder="Kilometers" value={{car['km']}}>
                       </div>
                     </div>
                     <div class="col-md-6 pl-md-1">
                       <div class="form-group">
                         <label for="fuelSelect">Fuel</label>
                         <select class="form-control" id="fuelSelect">
-                          <option value="Diesel">Diesel</option>
-                          <option value="Flex" selected>Flex</option>
-                          <option value="Hybrid">Hybrid</option>
+                          {% if car['fuel'] == 'Diesel'%}
+                            <option value="Diesel selected">Diesel</option>
+                            <option value="Flex">Flex</option>
+                            <option value="Hybrid">Hybrid</option>
+                          {% elif car['fuel'] == 'Flex'%}
+                            <option value="Diesel">Diesel</option>
+                            <option value="Flex" selected>Flex</option>
+                            <option value="Hybrid">Hybrid</option>
+                          {% elif car['fuel'] == 'Hybrid' %}
+                            <option value="Diesel">Diesel</option>
+                            <option value="Flex">Flex</option>
+                            <option value="Hybrid" selected>Hybrid</option>
+                          {% else %}
+                            <option value="Diesel">Diesel</option>
+                            <option value="Flex">Flex</option>
+                            <option value="Hybrid">Hybrid</option>
+                          {% endif %}
                         </select>
                       </div>
                     </div>
@@ -174,8 +188,13 @@
                       <div class="form-group">
                         <label for="soldSelect">Sold</label>
                         <select class="form-control" id="soldSelect">
-                          <option value="True">Yes</option>
-                          <option value="False" selected>No</option>
+                          {% if car['sold'] %}
+                            <option value="True" selected>Yes</option>
+                            <option value="False">No</option>
+                          {% else %}
+                            <option value="True">Yes</option>
+                            <option value="False" selected>No</option>
+                          {% endif %}
                         </select>
                       </div>
                     </div>

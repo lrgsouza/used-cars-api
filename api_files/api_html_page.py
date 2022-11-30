@@ -74,3 +74,9 @@ def find(model):
     for car in cars:
         carros.append(car)
     return render_template('showCarsTemplate.html', cars=carros, model=model, len=len(carros))
+
+
+@app.route('/findOne/<plate>', methods=['GET'])
+def findOne(plate):
+    car = Car().readPlate(plate)
+    return render_template('updateCarTemplate.html', car=car)
