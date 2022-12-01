@@ -1,4 +1,4 @@
-from flask import Blueprint, request
+from flask import Blueprint, request, render_template
 import jsonpickle as jp
 
 from oop.car import Car
@@ -8,6 +8,11 @@ app = Blueprint('json_page', __name__)
 
 
 # Flask maps HTTP requests to Python functions.
+@app.route('/api/', methods=['GET'])
+def api():
+    return render_template('apiHomePageTemplate.html')
+
+
 @app.route('/api/model/<model>', methods=['GET'])
 def api_car_model(model):
     return jp.encode(Car().readByDict(dict(model=model)))

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <style>
+      html {
+        height: 100%;
+      }
+
+      body {
+        font-family: 'Lato', sans-serif;
+        color: #888;
+        margin: 0;
+      }
+
+      #main {
+        display: table;
+        width: 100%;
+        height: 100vh;
+        text-align: center;
+      }
+
+      .fof {
+        display: table-cell;
+        vertical-align: middle;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="main">
+      <div class="fof">
+        <h1>Welcome to Used Car API</h1>
+        <h2>Here it is some links that can help you:</h2>
+        <a href="/api/model/A3"><p>/api/model/A3</p></a>
+        <a href="/api/plate/TNN3E06"><p>/api/plate/TNN3E06</p></a>
+        <a href="/api/search?model=A3"><p>/api/search?model=A3</p></a>
+        <a href="/api/search?plate=TNN3E0"><p>/api/search?plate=TNN3E06</p></a>
+        <a href="/api/search/?brand=Ford&model=Mustang"><p>/api/search/?brand=Ford&model=Mustang</p></a>
+        <a href="/api/search/?brand=Ford&model=Mustang&max_km=30000&max_price=25000"><p>http://127.0.0.1:5000/api/search/?brand=Ford&model=Mustang&max_km=30000&max_price=25000</p></a>
+        <br>
+        <h2>All the options of search:</h2>
+          <p>brand<br>
+          model<br>
+          year<br>
+          fuel<br>
+          engine<br>
+          plate<br>
+          min_km<br>
+          max_km<br>
+          min_price<br>
+          max_price</p>
+      </div>
+    </div>
+  </body>
+</html>
