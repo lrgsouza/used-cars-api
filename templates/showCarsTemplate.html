@@ -40,28 +40,28 @@
     -->
     <div class="sidebar-wrapper">
       <div class="logo">
-        <a href="javascript:void(0)" class="simple-text logo-mini">
+        <a href="/" class="simple-text logo-mini">
           UC
         </a>
-        <a href="javascript:void(0)" class="simple-text logo-normal">
+        <a href="/" class="simple-text logo-normal">
           Used Car API
         </a>
       </div>
       <ul class="nav">
         <li>
-          <a href="./car/search">
+          <a href="/filter">
             <i class="tim-icons icon-bus-front-12"></i>
             <p>Find car</p>
           </a>
         </li>
         <li>
-          <a href="./car/search">
+          <a href="/register">
             <i class="tim-icons icon-simple-add"></i>
             <p>Add new car</p>
           </a>
         </li>
         <li>
-          <a href="./api">
+          <a href="/api">
             <i class="tim-icons icon-align-center"></i>
             <p>Use JSON API</p>
           </a>
@@ -81,7 +81,7 @@
                 <span class="navbar-toggler-bar bar3"></span>
               </button>
             </div>
-            <a class="navbar-brand" href="javascript:void(0)">Showing cars</a>
+            <a class="navbar-brand" href="/">Showing cars</a>
           </div>
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navigation" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-bar navbar-kebab"></span>
@@ -127,19 +127,25 @@
               <div class="card-body">
                 <form action="/filter" method="post" enctype="multipart/form-data">
                   <div class="row">
-                    <div class="col-md-4 pr-md-1">
+                    <div class="col-md-3 pr-md-1">
                       <div class="form-group">
                         <label>Brand</label>
                         <input type="text" class="form-control" placeholder="Brand" name="brand">
                       </div>
                     </div>
-                    <div class="col-md-4 px-md-1">
+                    <div class="col-md-3 px-md-1">
                       <div class="form-group">
                         <label>Model</label>
                         <input type="text" class="form-control" placeholder="Model" name="model">
                       </div>
                     </div>
-                    <div class="col-md-4 pl-md-1">
+                    <div class="col-md-3 px-md-1">
+                      <div class="form-group">
+                        <label>Plate</label>
+                        <input type="text" class="form-control" placeholder="Plate" name="plate">
+                      </div>
+                    </div>
+                    <div class="col-md-3 pl-md-1">
                       <div class="form-group">
                         <label for="fuel">Fuel</label>
                         <select class="form-control" id="fuel" name="fuel">

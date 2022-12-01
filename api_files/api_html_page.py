@@ -41,6 +41,7 @@ def filter():
         year = request.form['year']
         fuel = request.form['fuel']
         engine = request.form['engine']
+        plate = request.form['plate']
         minKm = request.form['min_km']
         maxKm = request.form['max_km']
 
@@ -54,16 +55,19 @@ def filter():
             car_dict['fuel'] = fuel
         if engine:
             car_dict['engine'] = engine
+        if plate:
+            car_dict['plate'] = plate
 
         km_dict = {}
         if minKm:
-            km_dict['$gte'] = minKm
+            km_dict['$gte'] = int(minKm)
         if maxKm:
-            km_dict['$lte'] = maxKm
+            km_dict['$lte'] = int(maxKm)
 
         if km_dict:
             car_dict['km'] = km_dict
 
+        print(car_dict)
         cars = Car().readByDict(car_dict)
         carros = []
         for car in cars:
