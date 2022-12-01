@@ -88,8 +88,8 @@ def find(model):
     return render_template('showCarsTemplate.html', cars=carros, len=len(carros))
 
 
-@app.route('/findOne/<plate>', methods=['GET', 'POST'])
-def findOne(plate):
+@app.route('/profile/<plate>', methods=['GET', 'POST'])
+def profile(plate):
     car = Car().readPlate(plate)
     if car:
         return render_template('updateCarTemplate.html', car=car)
@@ -109,7 +109,7 @@ def update():
     car.sold = request.form['sold']
     car.price = request.form['price']
     car.update()
-    redir = '/findOne/' + str(car.plate)
+    redir = '/profile/' + str(car.plate)
     return redirect(redir)
 
 
@@ -128,6 +128,6 @@ def register():
         car.price = request.form['price']
         car.create()
 
-        redir = '/findOne/' + str(car.plate)
+        redir = '/profile/' + str(car.plate)
         return redirect(redir)
     return render_template('registerCarTemplate.html')

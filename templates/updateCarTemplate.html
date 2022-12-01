@@ -249,7 +249,13 @@
     function submitFormUpdating() {
       form = document.getElementById("usedCarDataForm");
       form.action = "/update";
-      form.submit();
+      if(form.checkValidity()){
+        form.submit();
+        alert('The car was updated!');
+      }
+      else{
+        alert('All the fields must be filled.');
+      }
     }
 
     function submitFormDeleting() {
