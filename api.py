@@ -12,32 +12,25 @@ app.register_blueprint(json_page)
 app.register_blueprint(html_page)
 
 
+# Flask maps HTTP requests to Python functions.
 @app.errorhandler(404)
 def page_not_found(e):
-    return render_template("error.html", error="Error 404: Not Found"), 404
+    return render_template("errorTemplate.html", error="Error 404: Not Found"), 404
 
 
 @app.errorhandler(405)
 def page_not_found(e):
-    return render_template("error.html", error="Error 405: Method Not Allowed"), 404
+    return render_template("errorTemplate.html", error="Error 405: Method Not Allowed"), 404
 
 
 @app.errorhandler(400)
 def page_not_found(e):
-    return render_template("error.html", error="Error 400: Bad Request"), 400
+    return render_template("errorTemplate.html", error="Error 400: Bad Request"), 400
 
 
 @app.errorhandler(500)
 def page_not_found(e):
-    return render_template("error.html", error="Error 500: Internal Server Error"), 500
-
-
-@app.route('/test', methods=['GET', 'POST'])
-def index():
-    return render_template('showCarsTemplate.html')
-
-
-# Flask maps HTTP requests to Python functions.
+    return render_template("errorTemplate.html", error="Error 500: Internal Server Error"), 500
 
 
 # A method that runs the application server.

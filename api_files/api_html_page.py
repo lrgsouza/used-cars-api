@@ -12,8 +12,8 @@ def home():
     return render_template('homePageTemplate.html')
 
 
-@app.route('/filter', methods=['GET', 'POST'])
-def filter():
+@app.route('/filtering', methods=['GET', 'POST'])
+def filtering():
     if request.method == 'POST':
         car_dict = {}
         model = request.form['model']
@@ -32,6 +32,46 @@ def filter():
     return render_template('filter.html')
 
 
+@app.route('/filter', methods=['GET', 'POST'])
+def filter():
+    if request.method == 'POST':
+        car_dict = {}
+        brand = request.form['brand']
+        model = request.form['model']
+        year = request.form['year']
+        fuel = request.form['fuel']
+        engine = request.form['engine']
+        minKm = request.form['min_km']
+        maxKm = request.form['max_km']
+
+        if model:
+            car_dict['model'] = model
+        if brand:
+            car_dict['brand'] = brand
+        if year:
+            car_dict['year'] = year
+        if fuel:
+            car_dict['fuel'] = fuel
+        if engine:
+            car_dict['engine'] = engine
+
+        km_dict = {}
+        if minKm:
+            km_dict['$gte'] = minKm
+        if maxKm:
+            km_dict['$lte'] = maxKm
+
+        if km_dict:
+            car_dict['km'] = km_dict
+
+        cars = Car().readByDict(car_dict)
+        carros = []
+        for car in cars:
+            carros.append(car)
+        return render_template('showCarsTemplate.html', cars=carros, len=len(carros))
+    return render_template('showCarsTemplate.html', cars=[], len=0)
+
+
 @app.route('/delete', methods=['GET', 'POST'])
 def delete():
     if request.method == 'POST':
@@ -47,7 +87,7 @@ def find(model):
     carros = []
     for car in cars:
         carros.append(car)
-    return render_template('showCarsTemplate.html', cars=carros, model=model, len=len(carros))
+    return render_template('showCarsTemplate.html', cars=carros, len=len(carros))
 
 
 @app.route('/findOne/<plate>', methods=['GET', 'POST'])

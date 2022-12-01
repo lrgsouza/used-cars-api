@@ -118,7 +118,73 @@
           <div class="col-md-12">
             <div class="card ">
               <div class="card-header">
-                <h4 class="card-title"> Showing results for {{model}}</h4>
+                {% if len>0 %}
+                  <h4 class="card-title">Showing {{len}} results for you search.</h4>
+                {% else %}
+                  <h4 class="card-title">Fill the fields below to search.</h4>
+                {% endif %}
+              </div>
+              <div class="card-body">
+                <form action="/filter" method="post" enctype="multipart/form-data">
+                  <div class="row">
+                    <div class="col-md-4 pr-md-1">
+                      <div class="form-group">
+                        <label>Brand</label>
+                        <input type="text" class="form-control" placeholder="Brand" name="brand">
+                      </div>
+                    </div>
+                    <div class="col-md-4 px-md-1">
+                      <div class="form-group">
+                        <label>Model</label>
+                        <input type="text" class="form-control" placeholder="Model" name="model">
+                      </div>
+                    </div>
+                    <div class="col-md-4 pl-md-1">
+                      <div class="form-group">
+                        <label for="fuel">Fuel</label>
+                        <select class="form-control" id="fuel" name="fuel">
+                          <option selected></option>
+                          <option value="Diesel">Diesel</option>
+                          <option value="Flex">Flex</option>
+                          <option value="Hybrid">Hybrid</option>
+                        </select>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-3 pr-md-1">
+                      <div class="form-group">
+                        <label>Min km</label>
+                        <input type="number" class="form-control" placeholder="Kilometers" name="min_km">
+                      </div>
+                    </div>
+                    <div class="col-md-3 px-md-1">
+                      <div class="form-group">
+                        <label>Max km</label>
+                        <input type="number" class="form-control" placeholder="Kilometers" name="max_km">
+                      </div>
+                    </div>
+                    <div class="col-md-3 px-md-1">
+                      <div class="form-group">
+                        <label>Year</label>
+                        <input type="number" class="form-control" placeholder="Year" name="year">
+                      </div>
+                    </div>
+                    <div class="col-md-3 pl-md-1">
+                      <div class="form-group">
+                        <label>Engine</label>
+                        <input type="text" class="form-control" placeholder="Engine" name="engine">
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-4 offset-md-4">
+                      <button type="submit" class="btn btn-block btn-primary">
+                        <i class=" tim-icons icon-light-3"></i> Search
+                      </button>
+                    </div>
+                  </div>
+                </form>
               </div>
               <div class="card-body">
                 <div class="table-responsive">
