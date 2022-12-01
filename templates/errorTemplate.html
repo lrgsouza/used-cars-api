@@ -45,11 +45,21 @@
         }
       }
     </style>
+    <script>
+      function redirect(){
+        setTimeout(go, 5000);
+      }
+
+      function go() {
+         document.location.href = '/';
+      }
+    </script>
   </head>
-  <body>
+  <body onload="redirect()">
     <div id="main">
       <div class="fof">
         <h1>{{ error }}</h1>
+        <p>You will shortly be redirected to homepage.</p>
       </div>
     </div>
   </body>

@@ -22,7 +22,6 @@ def filtering():
             car_dict['model'] = model
         if brand:
             car_dict['brand'] = brand
-        # cars = Car().readModel(model)
         print(car_dict)
         cars = Car().readByDict(car_dict)
         carros = []
@@ -67,14 +66,15 @@ def filter():
         if km_dict:
             car_dict['km'] = km_dict
 
-        cars = Car().readByDict(car_dict)
-        carros = []
-        for car in cars:
-            carros.append(car)
+        res = Car().readByDict(car_dict)
+
+        cars = []
+        for car in res:
+            cars.append(car)
 
         car_dict['min_km'] = minKm
         car_dict['max_km'] = maxKm
-        return render_template('showCarsTemplate.html', cars=carros, len=len(carros), search=car_dict)
+        return render_template('showCarsTemplate.html', cars=cars, len=len(cars), search=car_dict)
     return render_template('showCarsTemplate.html', cars=[], len=0, search=[])
 
 
@@ -82,7 +82,7 @@ def filter():
 def delete():
     if request.method == 'POST':
         plate = request.form['plate']
-        res = Car().delete(plate)
+        Car().delete(plate)
 
     return redirect('/register')
 
