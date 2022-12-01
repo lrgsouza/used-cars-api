@@ -12,25 +12,6 @@ def home():
     return render_template('homePageTemplate.html')
 
 
-@app.route('/filtering', methods=['GET', 'POST'])
-def filtering():
-    if request.method == 'POST':
-        car_dict = {}
-        model = request.form['model']
-        brand = request.form['brand']
-        if model:
-            car_dict['model'] = model
-        if brand:
-            car_dict['brand'] = brand
-        print(car_dict)
-        cars = Car().readByDict(car_dict)
-        carros = []
-        for car in cars:
-            carros.append(car)
-        return render_template('tableTemplate.html', cars=carros, model=model, len=len(carros))
-    return render_template('filter.html')
-
-
 @app.route('/filter', methods=['GET', 'POST'])
 def filter():
     if request.method == 'POST':
@@ -43,6 +24,8 @@ def filter():
         plate = request.form['plate']
         minKm = request.form['min_km']
         maxKm = request.form['max_km']
+        minPrice = request.form['min_price']
+        maxPrice = request.form['max_price']
 
         if model:
             car_dict['model'] = model
@@ -65,6 +48,15 @@ def filter():
 
         if km_dict:
             car_dict['km'] = km_dict
+
+        price_dict = {}
+        if minPrice:
+            price_dict['$gte'] = int(minPrice)
+        if maxPrice:
+            price_dict['$lte'] = int(maxPrice)
+
+        if price_dict:
+            car_dict['price'] = price_dict
 
         res = Car().readByDict(car_dict)
 
@@ -115,6 +107,7 @@ def update():
     car.km = request.form['km']
     car.engine = request.form['engine']
     car.sold = request.form['sold']
+    car.price = request.form['price']
     car.update()
     redir = '/findOne/' + str(car.plate)
     return redirect(redir)
@@ -132,6 +125,7 @@ def register():
         car.km = request.form['km']
         car.engine = request.form['engine']
         car.sold = request.form['sold']
+        car.price = request.form['price']
         car.create()
 
         redir = '/findOne/' + str(car.plate)

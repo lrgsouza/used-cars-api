@@ -127,19 +127,19 @@
                     <div class="col-md-4 pr-md-1">
                       <div class="form-group">
                         <label>Brand</label>
-                        <input type="text" class="form-control" placeholder="Brand" name="brand">
+                        <input type="text" class="form-control" placeholder="Brand" name="brand" required>
                       </div>
                     </div>
                     <div class="col-md-4 px-md-1">
                       <div class="form-group">
                         <label>Model</label>
-                        <input type="text" class="form-control" placeholder="Model" name="model">
+                        <input type="text" class="form-control" placeholder="Model" name="model" required>
                       </div>
                     </div>
                     <div class="col-md-4 pl-md-1">
                       <div class="form-group">
                         <label>Plate</label>
-                        <input type="text" class="form-control" placeholder="XXX0X00" name="plate">
+                        <input type="text" class="form-control" placeholder="XXX0X00" name="plate" required>
                       </div>
                     </div>
                   </div>
@@ -147,19 +147,19 @@
                     <div class="col-md-4 pr-md-1">
                       <div class="form-group">
                         <label>Kilometers driven</label>
-                        <input type="number" class="form-control" placeholder="Kilometers" name="km">
+                        <input type="number" class="form-control" placeholder="Kilometers" name="km" required>
                       </div>
                     </div>
                     <div class="col-md-4 px-md-1">
                       <div class="form-group">
                         <label>Year</label>
-                        <input type="number" class="form-control" placeholder="Year" name="year">
+                        <input type="number" class="form-control" placeholder="Year" name="year" required>
                       </div>
                     </div>
                     <div class="col-md-4 pl-md-1">
                       <div class="form-group">
                         <label for="fuel">Fuel</label>
-                        <select class="form-control" id="fuel" name="fuel">
+                        <select class="form-control" id="fuel" name="fuel" required>
                           <option value="Diesel">Diesel</option>
                           <option value="Flex">Flex</option>
                           <option value="Hybrid">Hybrid</option>
@@ -168,16 +168,22 @@
                     </div>
                   </div>
                   <div class="row">
-                    <div class="col-md-6 pr-md-1">
+                    <div class="col-md-4 pr-md-1">
                       <div class="form-group">
                         <label>Engine</label>
-                        <input type="text" class="form-control" placeholder="Engine" name="engine">
+                        <input type="text" class="form-control" placeholder="Engine" name="engine" required>
                       </div>
                     </div>
-                    <div class="col-md-6 pl-md-1">
+                    <div class="col-md-4 px-md-1">
+                      <div class="form-group">
+                        <label>Price</label>
+                        <input type="text" class="form-control" placeholder="Price" name="price" required>
+                      </div>
+                    </div>
+                    <div class="col-md-4 pl-md-1">
                       <div class="form-group">
                         <label for="sold">Sold</label>
-                        <select class="form-control" id="sold" name="sold">
+                        <select class="form-control" id="sold" name="sold" required>
                             <option value="True">Yes</option>
                             <option value="False" selected>No</option>
                         </select>

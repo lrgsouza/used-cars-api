@@ -127,19 +127,19 @@
                     <div class="col-md-4 pr-md-1">
                       <div class="form-group">
                         <label>Brand</label>
-                        <input type="text" class="form-control" placeholder="Brand" name="brand" value="{{car['brand']}}">
+                        <input type="text" class="form-control" placeholder="Brand" name="brand" value="{{car['brand']}}" required>
                       </div>
                     </div>
                     <div class="col-md-4 px-md-1">
                       <div class="form-group">
                         <label>Model</label>
-                        <input type="text" class="form-control" placeholder="Model" name="model" value="{{car['model']}}">
+                        <input type="text" class="form-control" placeholder="Model" name="model" value="{{car['model']}}" required>
                       </div>
                     </div>
                     <div class="col-md-4 pl-md-1">
                       <div class="form-group">
                         <label>Plate</label>
-                        <input type="text" class="form-control" placeholder="XXX0X00" name="plate" value="{{car['plate']}}">
+                        <input type="text" class="form-control" placeholder="XXX0X00" name="plate" value="{{car['plate']}}" required>
                       </div>
                     </div>
                   </div>
@@ -147,19 +147,19 @@
                     <div class="col-md-4 pr-md-1">
                       <div class="form-group">
                         <label>Kilometers driven</label>
-                        <input type="number" class="form-control" placeholder="Kilometers" name="km" value={{car['km']}}>
+                        <input type="number" class="form-control" placeholder="Kilometers" name="km" value={{car['km']}} required>
                       </div>
                     </div>
                     <div class="col-md-4 px-md-1">
                       <div class="form-group">
                         <label>Year</label>
-                        <input type="number" class="form-control" placeholder="Year" name="year" value={{car['year']}}>
+                        <input type="number" class="form-control" placeholder="Year" name="year" value={{car['year']}} required>
                       </div>
                     </div>
                     <div class="col-md-4 pl-md-1">
                       <div class="form-group">
                         <label for="fuel">Fuel</label>
-                        <select class="form-control" id="fuel" name="fuel">
+                        <select class="form-control" id="fuel" name="fuel" required>
                           {% if car['fuel'] == 'Diesel'%}
                             <option value="Diesel" selected>Diesel</option>
                             <option value="Flex">Flex</option>
@@ -182,16 +182,22 @@
                     </div>
                   </div>
                   <div class="row">
-                    <div class="col-md-6 pr-md-1">
+                    <div class="col-md-4 pr-md-1">
                       <div class="form-group">
                         <label>Engine</label>
-                        <input type="text" class="form-control" placeholder="Engine" name="engine" value="{{car['engine']}}">
+                        <input type="text" class="form-control" placeholder="Engine" name="engine" value="{{car['engine']}}" required>
                       </div>
                     </div>
-                    <div class="col-md-6 pl-md-1">
+                    <div class="col-md-4 px-md-1">
+                      <div class="form-group">
+                        <label>Price</label>
+                        <input type="text" class="form-control" placeholder="Price" name="price" value="{{car['price']}}" required>
+                      </div>
+                    </div>
+                    <div class="col-md-4 pl-md-1">
                       <div class="form-group">
                         <label for="sold">Sold</label>
-                        <select class="form-control" id="sold" name="sold">
+                        <select class="form-control" id="sold" name="sold" required>
                           {% if car['sold'] %}
                             <option value="True" selected>Yes</option>
                             <option value="False">No</option>

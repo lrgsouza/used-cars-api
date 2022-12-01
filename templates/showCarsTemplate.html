@@ -127,7 +127,7 @@
               <div class="card-body">
                 <form action="/filter" method="post" enctype="multipart/form-data">
                   <div class="row">
-                    <div class="col-md-3 pr-md-1">
+                    <div class="col-md-4 pr-md-1">
                       <div class="form-group">
                         <label>Brand</label>
                         {%if search['brand']%}
@@ -137,7 +137,7 @@
                         {%endif%}
                       </div>
                     </div>
-                    <div class="col-md-3 px-md-1">
+                    <div class="col-md-4 px-md-1">
                       <div class="form-group">
                         <label>Model</label>
                         {%if search['model']%}
@@ -147,7 +147,7 @@
                         {%endif%}
                       </div>
                     </div>
-                    <div class="col-md-3 px-md-1">
+                    <div class="col-md-4 pl-md-1">
                       <div class="form-group">
                         <label>Plate</label>
                         {%if search['plate']%}
@@ -157,7 +157,29 @@
                         {%endif%}
                       </div>
                     </div>
-                    <div class="col-md-3 pl-md-1">
+                  </div>
+                  <div class="row">
+                    <div class="col-md-4 pr-md-1">
+                      <div class="form-group">
+                        <label>Year</label>
+                        {%if search['year']%}
+                          <input type="number" class="form-control" placeholder="Year" name="year" value="{{search['year']}}">
+                        {%else%}
+                          <input type="number" class="form-control" placeholder="Year" name="year">
+                        {%endif%}
+                      </div>
+                    </div>
+                    <div class="col-md-4 px-md-1">
+                      <div class="form-group">
+                        <label>Engine</label>
+                        {%if search['engine']%}
+                          <input type="text" class="form-control" placeholder="Engine" name="engine" value="{{search['engine']}}">
+                        {%else%}
+                          <input type="text" class="form-control" placeholder="Engine" name="engine">
+                        {%endif%}
+                      </div>
+                    </div>
+                    <div class="col-md-4 pl-md-1">
                       <div class="form-group">
                         <label for="fuel">Fuel</label>
                         <select class="form-control" id="fuel" name="fuel">
@@ -210,26 +232,24 @@
                     </div>
                     <div class="col-md-3 px-md-1">
                       <div class="form-group">
-                        <label>Year</label>
-                        {%if search['year']%}
-                          <input type="number" class="form-control" placeholder="Year" name="year" value="{{search['year']}}">
+                        <label>Min price</label>
+                        {%if search['min_price']%}
+                          <input type="number" class="form-control" placeholder="Price" name="min_price" value="{{search['min_price']}}">
                         {%else%}
-                          <input type="number" class="form-control" placeholder="Year" name="year">
+                          <input type="number" class="form-control" placeholder="Price" name="min_price">
                         {%endif%}
                       </div>
                     </div>
                     <div class="col-md-3 pl-md-1">
                       <div class="form-group">
-                        <label>Engine</label>
-                        {%if search['engine']%}
-                          <input type="text" class="form-control" placeholder="Engine" name="engine" value="{{search['engine']}}">
+                        <label>Max price</label>
+                        {%if search['max_price']%}
+                          <input type="number" class="form-control" placeholder="Price" name="max_price" value="{{search['max_price']}}">
                         {%else%}
-                          <input type="text" class="form-control" placeholder="Engine" name="engine">
+                          <input type="number" class="form-control" placeholder="Price" name="max_price">
                         {%endif%}
                       </div>
                     </div>
-                  </div>
-                  <div class="row">
                     <div class="col-md-4 offset-md-4">
                       <button type="submit" class="btn btn-block btn-primary">
                         <i class=" tim-icons icon-light-3"></i> Search
@@ -265,6 +285,9 @@
                           Plate
                         </th>
                         <th>
+                          Price
+                        </th>
+                        <th>
                           Sold
                         </th>
                         <th>
@@ -282,7 +305,12 @@
                         <td>{{car['km']}}</td>
                         <td>{{car['engine']}}</td>
                         <td>{{car['plate']}}</td>
-                        <td>{{car['sold']}}</td>
+                        <td>{{car['price']}}</td>
+                        {% if car['sold'] %}
+                          <td>Yes</td>
+                        {% else %}
+                          <td>No</td>
+                        {% endif %}
                         <td><a href="../../findOne/{{car['plate']}}" class="tim-icons icon-pencil"></a></td>
                       </tr>
                     {%endfor%}
