@@ -1,5 +1,6 @@
 import pymongo
 
+
 class Database:
     def __init__(self, collection, dataset=None):
         database = 'usedcarsdb'

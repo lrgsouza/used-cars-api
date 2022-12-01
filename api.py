@@ -24,7 +24,7 @@ http_error = {400: "Bad Request",
 
 
 def errorString(e):
-    err = "Error " + e + ": " + http_error[e]
+    err = "Error " + str(e) + ": " + http_error[e]
     return err
 
 

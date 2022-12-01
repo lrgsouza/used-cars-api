@@ -38,7 +38,7 @@ class Car(Database):
         return res
 
     def readByDict(self, args: dict):
-        return self.collection.find(args).sort([("year", -1), ("km", 1)]).limit(LIMIT)
+            return self.collection.find(args).sort([("year", -1), ("km", 1)]).limit(LIMIT)
 
     def update(self):
         res = self.collection.update_one({"plate": self.plate}, {

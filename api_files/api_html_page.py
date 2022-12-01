@@ -16,6 +16,7 @@ def home():
 def filter():
     if request.method == 'POST':
         car_dict = {}
+        query_dict = {}
         brand = request.form['brand']
         model = request.form['model']
         year = request.form['year']
@@ -28,8 +29,12 @@ def filter():
         maxPrice = request.form['max_price']
 
         if model:
+            regex = '.*' + model + '.*'
+            query_dict['model'] = {'$regex': regex, '$options': 'i'}
             car_dict['model'] = model
         if brand:
+            regex = '.*' + brand + '.*'
+            query_dict['brand'] = {'$regex': regex, '$options': 'i'}
             car_dict['brand'] = brand
         if year:
             car_dict['year'] = int(year)
@@ -38,6 +43,8 @@ def filter():
         if engine:
             car_dict['engine'] = engine
         if plate:
+            regex = '.*' + plate + '.*'
+            query_dict['plate'] = {'$regex': regex, '$options': 'i'}
             car_dict['plate'] = plate
 
         km_dict = {}
@@ -47,7 +54,7 @@ def filter():
             km_dict['$lte'] = int(maxKm)
 
         if km_dict:
-            car_dict['km'] = km_dict
+            query_dict['km'] = km_dict
 
         price_dict = {}
         if minPrice:
@@ -56,9 +63,9 @@ def filter():
             price_dict['$lte'] = int(maxPrice)
 
         if price_dict:
-            car_dict['price'] = price_dict
+            query_dict['price'] = price_dict
 
-        res = Car().readByDict(car_dict)
+        res = Car().readByDict(query_dict)
 
         cars = []
         for car in res:
@@ -66,6 +73,9 @@ def filter():
 
         car_dict['min_km'] = minKm
         car_dict['max_km'] = maxKm
+        car_dict['min_prince'] = minPrice
+        car_dict['max_price'] = maxPrice
+
         return render_template('showCarsTemplate.html', cars=cars, len=len(cars), search=car_dict)
     return render_template('showCarsTemplate.html', cars=[], len=0, search=[])
 
