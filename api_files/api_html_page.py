@@ -50,7 +50,7 @@ def filter():
         if brand:
             car_dict['brand'] = brand
         if year:
-            car_dict['year'] = year
+            car_dict['year'] = int(year)
         if fuel:
             car_dict['fuel'] = fuel
         if engine:
@@ -67,13 +67,15 @@ def filter():
         if km_dict:
             car_dict['km'] = km_dict
 
-        print(car_dict)
         cars = Car().readByDict(car_dict)
         carros = []
         for car in cars:
             carros.append(car)
-        return render_template('showCarsTemplate.html', cars=carros, len=len(carros))
-    return render_template('showCarsTemplate.html', cars=[], len=0)
+
+        car_dict['min_km'] = minKm
+        car_dict['max_km'] = maxKm
+        return render_template('showCarsTemplate.html', cars=carros, len=len(carros), search=car_dict)
+    return render_template('showCarsTemplate.html', cars=[], len=0, search=[])
 
 
 @app.route('/delete', methods=['GET', 'POST'])
