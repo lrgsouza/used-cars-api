@@ -79,15 +79,6 @@ def delete():
     return redirect('/register')
 
 
-@app.route('/find/<model>', methods=['GET'])
-def find(model):
-    cars = Car().readModel(model)
-    carros = []
-    for car in cars:
-        carros.append(car)
-    return render_template('showCarsTemplate.html', cars=carros, len=len(carros))
-
-
 @app.route('/profile/<plate>', methods=['GET', 'POST'])
 def profile(plate):
     car = Car().readPlate(plate)
