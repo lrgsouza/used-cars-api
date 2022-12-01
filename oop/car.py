@@ -2,7 +2,6 @@ from db.database import Database
 
 LIMIT = 50
 
-
 class Car(Database):
     def __init__(self, brand, model, year, fuel, km, engine, plate, sold, price):
         self.brand = brand
@@ -25,19 +24,10 @@ class Car(Database):
                                           "plate": self.plate, "sold": self.sold, "price": self.price})
         return res.inserted_id
 
-    def readPlate(self, plate):
-        res = self.collection.find_one({"plate": plate})
-        return res
-
-    def readModel(self, model):
-        res = self.collection.find({"model": model}).limit(LIMIT)
-        return res
-
-    def read(self, plate):
-        res = self.collection.find_one({"plate": plate})
-        return res
-
-    def readByDict(self, args: dict):
+    def readByDict(self, args: dict, selfLimit=None):
+        if selfLimit:
+            return self.collection.find(args).sort([("year", -1), ("km", 1)]).limit(selfLimit)
+        else:
             return self.collection.find(args).sort([("year", -1), ("km", 1)]).limit(LIMIT)
 
     def update(self):

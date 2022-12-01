@@ -139,7 +139,7 @@
                     <div class="col-md-4 pl-md-1">
                       <div class="form-group">
                         <label>Plate</label>
-                        <input type="text" class="form-control text-light" placeholder="XXX0X00" name="plate" value="{{car['plate']}}" disabled>
+                        <input type="text" class="form-control text-light" placeholder="XXX0X00" name="plate" value="{{car['plate']}}" style="pointer-events:none;opacity:60%;">
                       </div>
                     </div>
                   </div>
@@ -191,7 +191,7 @@
                     <div class="col-md-4 px-md-1">
                       <div class="form-group">
                         <label>Price</label>
-                        <input type="text" class="form-control" placeholder="Price" name="price" value="{{car['price']}}" required>
+                        <input type="number" class="form-control" placeholder="Price" name="price" value="{{car['price']}}" required>
                       </div>
                     </div>
                     <div class="col-md-4 pl-md-1">
@@ -248,8 +248,8 @@
 
     function submitFormUpdating() {
       form = document.getElementById("usedCarDataForm");
-      form.action = "/update";
       if(form.checkValidity()){
+        form.action = "/update";
         form.submit();
         alert('The car was updated!');
       }

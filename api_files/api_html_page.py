@@ -2,6 +2,7 @@ from flask import Blueprint
 from flask import render_template, request, url_for, redirect
 
 from oop.car import Car
+from helper.util import regexStr
 
 app = Blueprint('html_page', __name__)
 
@@ -29,12 +30,10 @@ def filter():
         maxPrice = request.form['max_price']
 
         if model:
-            regex = '.*' + model + '.*'
-            query_dict['model'] = {'$regex': regex, '$options': 'i'}
+            query_dict['model'] = regexStr(model)
             car_dict['model'] = model
         if brand:
-            regex = '.*' + brand + '.*'
-            query_dict['brand'] = {'$regex': regex, '$options': 'i'}
+            query_dict['brand'] = regexStr(brand)
             car_dict['brand'] = brand
         if year:
             car_dict['year'] = int(year)
@@ -43,8 +42,7 @@ def filter():
         if engine:
             car_dict['engine'] = engine
         if plate:
-            regex = '.*' + plate + '.*'
-            query_dict['plate'] = {'$regex': regex, '$options': 'i'}
+            query_dict['plate'] = regexStr(plate)
             car_dict['plate'] = plate
 
         km_dict = {}
@@ -73,7 +71,7 @@ def filter():
 
         car_dict['min_km'] = minKm
         car_dict['max_km'] = maxKm
-        car_dict['min_prince'] = minPrice
+        car_dict['min_price'] = minPrice
         car_dict['max_price'] = maxPrice
 
         return render_template('showCarsTemplate.html', cars=cars, len=len(cars), search=car_dict)
@@ -85,31 +83,35 @@ def delete():
     if request.method == 'POST':
         plate = request.form['plate']
         Car().delete(plate)
-
     return redirect('/register')
 
 
 @app.route('/profile/<plate>', methods=['GET', 'POST'])
 def profile(plate):
-    car = Car().readPlate(plate)
+    car = Car().readByDict(dict(plate=plate))
     if car:
         return render_template('updateCarTemplate.html', car=car)
     return redirect('/register')
 
 
-@app.route('/update', methods=['POST'])
+@app.route('/update', methods=['POST', 'GET'])
 def update():
+
+    if request.method == 'GET':
+        return redirect('/filter')
+
     car = Car()
     car.plate = request.form['plate']
     car.brand = request.form['brand']
     car.model = request.form['model']
-    car.year = request.form['year']
+    car.year = int(request.form['year'])
     car.fuel = request.form['fuel']
-    car.km = request.form['km']
+    car.km = int(request.form['km'])
     car.engine = request.form['engine']
     car.sold = request.form['sold']
-    car.price = request.form['price']
+    car.price = int(request.form['price'])
     car.update()
+
     redir = '/profile/' + str(car.plate)
     return redirect(redir)
 
@@ -121,12 +123,12 @@ def register():
         car.plate = request.form['plate']
         car.brand = request.form['brand']
         car.model = request.form['model']
-        car.year = request.form['year']
+        car.year = int(request.form['year'])
         car.fuel = request.form['fuel']
-        car.km = request.form['km']
+        car.km = int(request.form['km'])
         car.engine = request.form['engine']
         car.sold = request.form['sold']
-        car.price = request.form['price']
+        car.price = int(request.form['price'])
         car.create()
 
         redir = '/profile/' + str(car.plate)

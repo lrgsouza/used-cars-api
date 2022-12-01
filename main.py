@@ -1,6 +1,6 @@
 import pprint
 
-from helper.write_a_json import write_a_json as wj
+from helper.util import write_a_json as wj
 
 from oop.car import Car
 

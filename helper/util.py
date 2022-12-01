@@ -13,3 +13,8 @@ def write_a_json(data, name: str):
         json.dump(parsed_json, json_file,
                   indent=4,
                   separators=(',', ': '))
+
+
+def regexStr(text):
+    r = '.*' + text + '.*'
+    return {'$regex': r, '$options': 'i'}
