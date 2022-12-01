@@ -4,6 +4,8 @@ from flask import render_template, request, url_for, redirect
 from oop.car import Car
 from helper.util import regexStr
 
+import jsonpickle as jp
+
 app = Blueprint('html_page', __name__)
 
 
@@ -36,10 +38,13 @@ def filter():
             query_dict['brand'] = regexStr(brand)
             car_dict['brand'] = brand
         if year:
+            query_dict['year'] = int(year)
             car_dict['year'] = int(year)
         if fuel:
+            query_dict['fuel'] = fuel
             car_dict['fuel'] = fuel
         if engine:
+            query_dict['engine'] = engine
             car_dict['engine'] = engine
         if plate:
             query_dict['plate'] = regexStr(plate)
@@ -88,7 +93,8 @@ def delete():
 
 @app.route('/profile/<plate>', methods=['GET', 'POST'])
 def profile(plate):
-    car = Car().readByDict(dict(plate=plate))
+    car = Car().readPlate(plate)
+
     if car:
         return render_template('updateCarTemplate.html', car=car)
     return redirect('/register')

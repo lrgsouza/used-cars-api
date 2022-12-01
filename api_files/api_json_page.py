@@ -32,10 +32,6 @@ def api_car_details():
     minPrice = request.args.get('min_price')
     maxPrice = request.args.get('max_price')
 
-    order1 = request.args.get('order1')
-    order2 = request.args.get('order2')
-    order3 = request.args.get('order3')
-
     if model:
         car_dict['model'] = regexStr(model)
     if brand:

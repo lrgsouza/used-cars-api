@@ -24,11 +24,12 @@ class Car(Database):
                                           "plate": self.plate, "sold": self.sold, "price": self.price})
         return res.inserted_id
 
-    def readByDict(self, args: dict, selfLimit=None):
-        if selfLimit:
-            return self.collection.find(args).sort([("year", -1), ("km", 1)]).limit(selfLimit)
-        else:
-            return self.collection.find(args).sort([("year", -1), ("km", 1)]).limit(LIMIT)
+    def readByDict(self, args: dict):
+        return self.collection.find(args).limit(LIMIT)
+
+    def readPlate(self, plate):
+        res = self.collection.find_one({"plate": plate})
+        return res
 
     def update(self):
         res = self.collection.update_one({"plate": self.plate}, {

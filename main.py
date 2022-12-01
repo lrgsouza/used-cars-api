@@ -6,5 +6,4 @@ from oop.car import Car
 
 
 if __name__ == '__main__':
-
-    print("Job finished")
+    pass

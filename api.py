@@ -87,4 +87,4 @@ def gateway_timed_out(e):
 # A method that runs the application server.
 if __name__ == "__main__":
     # Threaded option to enable multiple instances for multiple user access support
-    app.run(debug=False, threaded=True, port=5000)
+    app.run(debug=True, threaded=True, port=5000)
