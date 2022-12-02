@@ -1,5 +1,5 @@
 from flask import Blueprint
-from flask import render_template, request, url_for, redirect
+from flask import render_template, request, redirect
 
 from oop.car import Car
 from helper.util import regexStr
@@ -71,8 +71,6 @@ def filter():
 
         if price_dict:
             query_dict['price'] = price_dict
-
-
 
         res = Car().readByDict(query_dict)
 

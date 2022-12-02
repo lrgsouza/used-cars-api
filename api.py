@@ -1,4 +1,4 @@
-from flask import Flask, request, redirect, url_for, render_template
+from flask import Flask, render_template
 
 from api_files.api_html_page import app as html_page
 from api_files.api_json_page import app as json_page
