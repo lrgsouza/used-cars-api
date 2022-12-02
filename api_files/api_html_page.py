@@ -2,9 +2,7 @@ from flask import Blueprint
 from flask import render_template, request, redirect
 
 from oop.car import Car
-from helper.util import regexStr
-
-import jsonpickle as jp
+from helper.util import regexStr, boolStr
 
 app = Blueprint('html_page', __name__)
 
@@ -118,7 +116,7 @@ def update():
     car.fuel = request.form['fuel']
     car.km = int(request.form['km'])
     car.engine = request.form['engine']
-    car.sold = request.form['sold']
+    car.sold = boolStr(request.form['sold'])
     car.price = int(request.form['price'])
     car.transmission = request.form['transmission']
     car.update()

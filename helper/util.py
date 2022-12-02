@@ -19,3 +19,9 @@ def errorStr(e):
 def regexStr(text):
     r = '.*' + text + '.*'
     return {'$regex': r, '$options': 'i'}
+
+
+def boolStr(text):
+    if text == 'True' or text == 'true':
+        return True
+    return False
