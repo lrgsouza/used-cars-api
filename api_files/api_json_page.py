@@ -36,6 +36,7 @@ def api_car_details():
     maxKm = request.args.get('max_km')
     minPrice = request.args.get('min_price')
     maxPrice = request.args.get('max_price')
+    transmission = request.args.get('transmission')
 
     if model:
         car_dict['model'] = regexStr(model)
@@ -45,6 +46,8 @@ def api_car_details():
         car_dict['year'] = int(year)
     if fuel:
         car_dict['fuel'] = fuel
+    if transmission:
+        car_dict['transmission'] = regexStr(transmission)
     if engine:
         car_dict['engine'] = engine
     if plate:

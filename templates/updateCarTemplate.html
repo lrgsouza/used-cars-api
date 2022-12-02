@@ -144,19 +144,19 @@
                     </div>
                   </div>
                   <div class="row">
-                    <div class="col-md-4 pr-md-1">
+                    <div class="col-md-3 pr-md-1">
                       <div class="form-group">
                         <label>Kilometers driven</label>
                         <input type="number" class="form-control" placeholder="Kilometers" name="km" value={{car['km']}} required>
                       </div>
                     </div>
-                    <div class="col-md-4 px-md-1">
+                    <div class="col-md-3 px-md-1">
                       <div class="form-group">
                         <label>Year</label>
                         <input type="number" class="form-control" placeholder="Year" name="year" value={{car['year']}} required>
                       </div>
                     </div>
-                    <div class="col-md-4 pl-md-1">
+                    <div class="col-md-3 px-md-1">
                       <div class="form-group">
                         <label for="fuel">Fuel</label>
                         <select class="form-control" id="fuel" name="fuel" required>
@@ -180,6 +180,30 @@
                         </select>
                       </div>
                     </div>
+                    <div class="col-md-3 pl-md-1">
+                    <div class="form-group">
+                      <label for="transmission">Transmission</label>
+                      <select class="form-control" id="transmission" name="transmission" required>
+                        {% if car['transmission'] == 'Automatico'%}
+                          <option value="Automatico" selected>Automatico</option>
+                          <option value="Semi-Auto">Semi-Auto</option>
+                          <option value="Manual">Manual</option>
+                        {% elif car['transmission'] == 'Semi-Auto'%}
+                          <option value="Automatico">Automatico</option>
+                          <option value="Semi-Auto" selected>Semi-Auto</option>
+                          <option value="Manual">Manual</option>
+                        {% elif car['transmission'] == 'Manual' %}
+                          <option value="Automatico">Automatico</option>
+                          <option value="Semi-Auto">Semi-Auto</option>
+                          <option value="Manual" selected>Manual</option>
+                        {% else %}
+                          <option value="Automatico">Automatico</option>
+                          <option value="Semi-Auto">Semi-Auto</option>
+                          <option value="Manual">Manual</option>
+                        {% endif %}
+                      </select>
+                    </div>
+                  </div>
                   </div>
                   <div class="row">
                     <div class="col-md-4 pr-md-1">

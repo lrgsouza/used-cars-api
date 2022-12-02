@@ -30,6 +30,7 @@ def filter():
         maxKm = request.form['max_km']
         minPrice = request.form['min_price']
         maxPrice = request.form['max_price']
+        transmission = request.form['transmission']
 
         if model:
             query_dict['model'] = regexStr(model)
@@ -43,6 +44,9 @@ def filter():
         if fuel:
             query_dict['fuel'] = fuel
             car_dict['fuel'] = fuel
+        if transmission:
+            query_dict['transmission'] = transmission
+            car_dict['transmission'] = transmission
         if engine:
             query_dict['engine'] = engine
             car_dict['engine'] = engine
@@ -67,6 +71,8 @@ def filter():
 
         if price_dict:
             query_dict['price'] = price_dict
+
+
 
         res = Car().readByDict(query_dict)
 
@@ -116,6 +122,7 @@ def update():
     car.engine = request.form['engine']
     car.sold = request.form['sold']
     car.price = int(request.form['price'])
+    car.transmission = request.form['transmission']
     car.update()
 
     redir = '/profile/' + str(car.plate)
@@ -135,6 +142,7 @@ def register():
         car.engine = request.form['engine']
         car.sold = request.form['sold']
         car.price = int(request.form['price'])
+        car.transmission = request.form['transmission']
         car.create()
 
         redir = '/profile/' + str(car.plate)

@@ -121,7 +121,7 @@
                 {% if len>0 %}
                   <h4 class="card-title">Showing {{len}} results for your search.</h4>
                 {% else %}
-                  <h4 class="card-title">Fill the fields below to search.</h4>
+                  <h4 class="card-title">Fill in the fields below to search.</h4>
                 {% endif %}
               </div>
               <div class="card-body">
@@ -159,7 +159,7 @@
                     </div>
                   </div>
                   <div class="row">
-                    <div class="col-md-4 pr-md-1">
+                    <div class="col-md-3 pr-md-1">
                       <div class="form-group">
                         <label>Year</label>
                         {%if search['year']%}
@@ -169,7 +169,7 @@
                         {%endif%}
                       </div>
                     </div>
-                    <div class="col-md-4 px-md-1">
+                    <div class="col-md-3 px-md-1">
                       <div class="form-group">
                         <label>Engine</label>
                         {%if search['engine']%}
@@ -179,7 +179,7 @@
                         {%endif%}
                       </div>
                     </div>
-                    <div class="col-md-4 pl-md-1">
+                    <div class="col-md-3 px-md-1">
                       <div class="form-group">
                         <label for="fuel">Fuel</label>
                         <select class="form-control" id="fuel" name="fuel">
@@ -203,6 +203,34 @@
                             <option value="Diesel">Diesel</option>
                             <option value="Flex">Flex</option>
                             <option value="Hybrid">Hybrid</option>
+                          {% endif %}
+                        </select>
+                      </div>
+                    </div>
+                    <div class="col-md-3 pl-md-1">
+                      <div class="form-group">
+                        <label for="transmission">Transmission</label>
+                        <select class="form-control" id="transmission" name="transmission">
+                          {% if search['transmission'] == 'Automatico'%}
+                            <option></option>
+                            <option value="Automatico" selected>Automatico</option>
+                            <option value="Semi-Auto">Semi-Auto</option>
+                            <option value="Manual">Manual</option>
+                          {% elif search['transmission'] == 'Semi-Auto'%}
+                            <option></option>
+                            <option value="Automatico" >Automatico</option>
+                            <option value="Semi-Auto" selected>Semi-Auto</option>
+                            <option value="Manual">Manual</option>
+                          {% elif search['transmission'] == 'Manual' %}
+                            <option></option>
+                            <option value="Automatico" >Automatico</option>
+                            <option value="Semi-Auto">Semi-Auto</option>
+                            <option value="Manual" selected>Manual</option>
+                          {% else %}
+                            <option selected></option>
+                            <option value="Automatico">Automatico</option>
+                            <option value="Semi-Auto">Semi-Auto</option>
+                            <option value="Manual">Manual</option>
                           {% endif %}
                         </select>
                       </div>
@@ -275,6 +303,9 @@
                           Fuel
                         </th>
                         <th>
+                          Transmission
+                        </th>
+                        <th>
                           KM
                         </th>
                         <th>
@@ -301,6 +332,7 @@
                         <td>{{car['model']}}</td>
                         <td>{{car['year']}}</td>
                         <td>{{car['fuel']}}</td>
+                        <td>{{car['transmission']}}</td>
                         <td>{{car['km']}}</td>
                         <td>{{car['engine']}}</td>
                         <td>{{car['plate']}}</td>
