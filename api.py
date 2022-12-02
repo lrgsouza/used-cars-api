@@ -14,6 +14,11 @@ from helper.util import errorStr
 
 
 # Flask maps HTTP requests to Python functions.
+@app.route('/test/', methods=['GET'])
+def test():
+    return "<h1>It's alright here!</h1>"
+
+
 @app.errorhandler(400)
 def bad_request(e):
     return render_template("errorTemplate.html", error=errorStr(400)), 400
