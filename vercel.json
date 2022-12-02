@@ -1,8 +1,0 @@
-{
-  "version": 2,
-  "builds": [
-    { "src": "api.py", "use": "@vercel/python@3.10.6" },
-    { "src": "data/*.json", "use": "@vercel/static" }
-  ],
-  "routes": [{ "src": "/(.*)", "dest": "api.py" }]
-}
