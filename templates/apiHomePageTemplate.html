@@ -24,10 +24,25 @@
         vertical-align: middle;
       }
     </style>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <link rel="apple-touch-icon" sizes="76x76" href="{{url_for('static', filename='img/apple-icon.png')}}">
+  <link rel="icon" type="image/png" href="{{url_for('static', filename='img/favicon.png')}}">
+  <title>
+    Home Page
+  </title>
+  <!--     Fonts and icons     -->
+  <link href="https://fonts.googleapis.com/css?family=Poppins:200,300,400,600,700,800" rel="stylesheet" />
+  <link href="https://use.fontawesome.com/releases/v5.0.6/css/all.css" rel="stylesheet">
+  <!-- Nucleo Icons -->
+  <link href="{{url_for('static', filename='css/nucleo-icons.css')}}" rel='stylesheet' />
+  <!-- CSS Files -->
+  <link href="{{url_for('static', filename='css/black-dashboard.css')}}" rel='stylesheet' />
   </head>
   <body>
     <div id="main">
       <div class="fof">
+
         <h1>Welcome to Used Car API</h1>
         <h2>Here it is some links that can help you:</h2>
         <a href="/api/model/A3"><p>/api/model/A3</p></a>
@@ -48,7 +63,8 @@
           min_km<br>
           max_km<br>
           min_price<br>
-          max_price</p>
+          max_price</p><br>
+        <a href="/" class="simple-text logo-mini"><h3><i class="tim-icons icon-tv-2"></i> BACK TO HOME PAGE </h3></a>
       </div>
     </div>
   </body>
