@@ -1,18 +1,19 @@
-import json
-import os
-from bson import json_util
+http_error = {400: "Bad Request",
+              401: "Unauthorized",
+              403: "Forbidden",
+              404: "Not Found",
+              405: "Method Not Allowed",
+              429: "Too Many Requests",
+              500: "Internal Server Error",
+              501: "Not Implemented",
+              502: "Bad Gateway",
+              503: "Service Unavailable",
+              504: "Gateway Timed Out"}
 
 
-def write_a_json(data, name: str):
-    parsed_json = json.loads(json_util.dumps(data))
-
-    if not os.path.isdir("./json"):
-        os.makedirs("./json")
-
-    with open(f'./json/{name}.json', 'w', encoding='utf-8') as json_file:
-        json.dump(parsed_json, json_file,
-                  indent=4,
-                  separators=(',', ': '))
+def errorStr(e):
+    err = "Error " + str(e) + ": " + http_error[e]
+    return err
 
 
 def regexStr(text):
